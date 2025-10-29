@@ -5,10 +5,11 @@ plugins {
     id("org.jetbrains.dokka") version "2.0.0"
     kotlin("plugin.serialization") version "2.0.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    `maven-publish`
 }
 
 group = "me.kub94ek"
-version = "1.2"
+version = "1.3"
 
 repositories {
     mavenCentral()
@@ -53,6 +54,15 @@ tasks.withType<DokkaTask>().configureEach {
     dokkaSourceSets {
         configureEach {
             includes.from(project.files(), "packages.md")
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["kotlin"])
+            artifact(tasks["kotlinSourcesJar"])
         }
     }
 }
