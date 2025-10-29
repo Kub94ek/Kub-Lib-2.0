@@ -31,9 +31,9 @@ class KubLib : JavaPlugin() {
         pluginManager.registerEvents(MenuListener(this), this)
 
         if (!NBT.preloadApi()) {
-            logger.warning("NBT-API wasn't initialized properly, disabling the plugin");
+            logger.warning("NBT-API wasn't initialized properly, disabling the plugin")
             server.pluginManager.disablePlugin(this)
-            return;
+            return
         }
     }
 

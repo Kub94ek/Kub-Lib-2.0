@@ -1,11 +1,9 @@
 package me.kub94ek.kubLib.gui
 
 import de.tr7zw.nbtapi.NBT
-import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
-import org.bukkit.persistence.PersistentDataType
 
 /**
  * Manages the registration and interaction of menus.

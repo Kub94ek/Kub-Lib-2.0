@@ -99,7 +99,6 @@ open class ChestMenu(private val title: Component, override val id: String, priv
     private fun createMenuItemStack(char: Char, player: Player): ItemStack {
         val menuItemStack = preparedItems[char]?.invoke(player) ?: keyMap[char]?.item ?: return emptyItem()
         val itemMeta = menuItemStack.itemMeta
-        val dataContainer = itemMeta.persistentDataContainer
         menuItemStack.itemMeta = itemMeta
 
         NBT.modify(menuItemStack) {

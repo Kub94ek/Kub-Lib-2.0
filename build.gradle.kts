@@ -23,8 +23,6 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.10")
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-    implementation("net.kyori:adventure-text-serializer-gson:4.20.0")
     compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.3")
 }
 

@@ -92,7 +92,7 @@ class ItemRegistry {
     }
 
     fun hasItemId(item: ItemStack): Boolean {
-        var hasId: Boolean = false
+        var hasId = false
         NBT.get(item) {
             hasId = it.getCompound("kub_lib:data")?.hasTag("item_id") ?: false
         }
