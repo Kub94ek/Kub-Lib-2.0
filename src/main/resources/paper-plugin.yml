@@ -1,0 +1,14 @@
+name: KubLib
+version: '1.0-SNAPSHOT'
+main: me.kub94ek.kubLib.KubLib
+bootstrapper: me.kub94ek.kubLib.KubLibBootstrap
+loader: me.kub94ek.kubLib.KubLibLoader
+api-version: '1.21.7'
+load: STARTUP
+authors: [ Kub94ek ]
+dependencies:
+  server:
+    NBTAPI:
+      load: BEFORE
+      required: true
+      join-classpath: true
