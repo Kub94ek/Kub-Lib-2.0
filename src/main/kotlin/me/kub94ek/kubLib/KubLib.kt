@@ -1,6 +1,7 @@
 package me.kub94ek.kubLib
 
 import de.tr7zw.nbtapi.NBT
+import me.kub94ek.kubLib.cooldown.CooldownManager
 import me.kub94ek.kubLib.gui.MenuRegistry
 import me.kub94ek.kubLib.items.ItemRegistry
 import me.kub94ek.kubLib.listeners.CraftingListener
@@ -20,6 +21,9 @@ class KubLib : JavaPlugin() {
 
     /** Registry for custom menus */
     val menuRegistry = MenuRegistry()
+
+    /** Manager for handling cooldowns */
+    val cooldownManager = CooldownManager()
 
     override fun onEnable() {
         kubLib = this

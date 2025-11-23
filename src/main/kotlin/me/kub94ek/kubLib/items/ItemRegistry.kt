@@ -1,6 +1,7 @@
 package me.kub94ek.kubLib.items
 
 import de.tr7zw.nbtapi.NBT
+import de.tr7zw.nbtapi.iface.ReadWriteNBT
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -105,6 +106,15 @@ class ItemRegistry {
             id = it.getCompound("kub_lib:data")?.getString("item_id")
         }
         return id
+    }
+
+
+    fun getDataCompound(item: ItemStack): ReadWriteNBT? {
+        var compound: ReadWriteNBT? = null
+        NBT.modify(item) {
+            compound = it.getCompound("kub_lib:data")
+        }
+        return compound
     }
 
 
