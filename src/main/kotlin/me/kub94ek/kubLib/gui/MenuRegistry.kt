@@ -21,6 +21,7 @@ class MenuRegistry {
      */
     fun getMenuId(item: ItemStack): String? {
         var id: String? = null
+        if (item.type.isAir || item.amount <= 0) return null
         NBT.get(item) {
             id = it.resolveCompound("kub_lib:data.menu")?.getString("id")
         }

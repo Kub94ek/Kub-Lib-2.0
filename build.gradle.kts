@@ -22,8 +22,11 @@ repositories {
 }
 
 dependencies {
+    // Core dependencies
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.10")
+
+    // NBT API
     compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.3")
 }
 
