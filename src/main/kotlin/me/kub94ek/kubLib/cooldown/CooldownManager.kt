@@ -33,7 +33,7 @@ class CooldownManager {
                                 val player = Bukkit.getPlayer(playerId) ?: continue
                                 player.sendMessage(cooldown.endMessage)
                             } else {
-                                playerCooldowns[id] = timeLeft - 20
+                                playerCooldowns[id] = timeLeft - 1
                             }
                         }
                     }

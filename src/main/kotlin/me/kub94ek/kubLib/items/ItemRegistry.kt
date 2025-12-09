@@ -2,12 +2,17 @@ package me.kub94ek.kubLib.items
 
 import de.tr7zw.nbtapi.NBT
 import de.tr7zw.nbtapi.iface.ReadWriteNBT
+import me.kub94ek.kubLib.KubLib
+import me.kub94ek.kubLib.items.effects.ItemEffect
 import net.kyori.adventure.text.Component
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.EntityType
 import org.bukkit.event.entity.EntityDeathEvent
+import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
+import org.bukkit.scheduler.BukkitRunnable
 import java.util.EnumMap
 import java.util.function.Predicate
 
@@ -16,6 +21,8 @@ class ItemRegistry {
     private val items: HashMap<String, Item> = hashMapOf()
 
     val customDrops: EnumMap<EntityType, MutableList<CustomDrops>> = EnumMap(EntityType::class.java)
+
+    val itemEffects: MutableList<ItemEffect> = mutableListOf()
 
 
     fun registerItem(
@@ -80,6 +87,24 @@ class ItemRegistry {
         }
     }
 
+    fun registerItemEffect(effect: ItemEffect) {
+        object : BukkitRunnable() {
+            override fun run() {
+                Bukkit.getOnlinePlayers().forEach {
+                    if (effect.shouldApply(it.inventory)) {
+                        object : BukkitRunnable() {
+                            override fun run() {
+                                effect.applyEffect(it)
+                            }
+                        }.runTask(KubLib.getInstance())
+                    }
+                }
+            }
+        }.runTaskTimerAsynchronously(KubLib.getInstance(), 0, effect.periodInTicks)
+
+        itemEffects.add(effect)
+    }
+
 
     fun getItemStack(id: String, clone: Boolean = true): ItemStack? {
         if (!clone) {
@@ -138,27 +163,53 @@ class ItemRegistry {
         return items[id]?.flags?.containsKey(Flags.CRAFTING_USABLE) ?: false
     }
 
-    fun createItem(
-        id: String,
-        type: Material, name: Component,
-        lore: List<Component> = listOf(),
-        model: String = id
-    ): ItemStack {
-        val item = ItemStack(type)
-        val meta = item.itemMeta!!
-        meta.itemName(name)
-        meta.itemModel = NamespacedKey.fromString(model)
-        if (lore.isNotEmpty()) {
-            meta.lore(lore)
-        }
-        item.itemMeta = meta
+    companion object {
+        fun createItem(
+            id: String,
+            type: Material, name: Component,
+            lore: List<Component> = listOf(),
+            model: String = id
+        ): ItemStack {
+            val item = createItem(type, name, lore, model)
 
-        NBT.modify(item) {
-            it.getOrCreateCompound("kub_lib:data").setString("item_id", id)
+            NBT.modify(item) {
+                it.getOrCreateCompound("kub_lib:data").setString("item_id", id)
+            }
+
+            return item
         }
 
-        return item
+        fun createItem(type: Material, name: Component, lore: List<Component> = listOf(), model: String? = null): ItemStack {
+            val item = ItemStack(type)
+            val meta = item.itemMeta!!
+            meta.itemName(name)
+            if (lore.isNotEmpty()) {
+                meta.lore(lore)
+            }
+            if (model != null) {
+                meta.itemModel = NamespacedKey.fromString(model)
+            }
+            item.itemMeta = meta
 
+            return item
+        }
+
+        @Suppress("UnstableApiUsage")
+        fun createArmor(
+            id: String, assetId: String = id.substringBefore('_'),
+            type: Material, name: Component, slot: EquipmentSlot,
+            lore: List<Component> = listOf(),
+            model: String = id
+        ): ItemStack {
+            val item = createItem(id, type, name, lore, model)
+            item.editMeta {
+                val equippable = it.equippable
+                equippable.model = NamespacedKey.fromString(assetId)
+                equippable.slot = slot
+                it.setEquippable(equippable)
+            }
+            return item
+        }
     }
 
 }

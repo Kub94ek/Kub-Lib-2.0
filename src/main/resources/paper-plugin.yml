@@ -1,5 +1,5 @@
 name: KubLib
-version: '1.0-SNAPSHOT'
+version: "${version}"
 main: me.kub94ek.kubLib.KubLib
 bootstrapper: me.kub94ek.kubLib.KubLibBootstrap
 loader: me.kub94ek.kubLib.KubLibLoader

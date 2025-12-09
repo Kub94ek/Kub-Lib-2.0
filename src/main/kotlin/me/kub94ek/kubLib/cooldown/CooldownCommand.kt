@@ -150,7 +150,7 @@ class CooldownCommand(private val permissionBase: String) {
                                         val cooldownId = StringArgumentType.getString(ctx, "cooldown_id")
                                         ctx.source.sender.sendMessage(
                                             "Player ${player.name} " +
-                                                    "cooldown with id: $cooldownId" +
+                                                    "cooldown with id $cooldownId: " +
                                                     "${cooldownManager.getRemainingCooldown(player.uniqueId, cooldownId) ?: "None"}"
                                         )
                                         1
@@ -185,7 +185,7 @@ class CooldownCommand(private val permissionBase: String) {
                                         val cooldownId = StringArgumentType.getString(ctx, "cooldown_id")
                                         ctx.source.sender.sendMessage(
                                             "Player ${Bukkit.getPlayer(uuid)?.name ?: "unknown player (uuid: ${uuid})"} " +
-                                                    "cooldown with id: $cooldownId" +
+                                                    "cooldown with id $cooldownId: " +
                                                     "${cooldownManager.getRemainingCooldown(uuid, cooldownId) ?: "None"}"
                                         )
                                         1
