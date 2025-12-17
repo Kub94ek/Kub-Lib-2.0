@@ -29,7 +29,7 @@ class ItemRegistry {
         id: String,
         type: Material, name: Component,
         lore: List<Component> = listOf(),
-        model: String = id,
+        model: String? = id,
         flags: Map<Flags, Any> = emptyMap()) {
         registerItem(id, createItem(id, type, name, lore, model), flags)
     }
@@ -168,7 +168,7 @@ class ItemRegistry {
             id: String,
             type: Material, name: Component,
             lore: List<Component> = listOf(),
-            model: String = id
+            model: String? = id
         ): ItemStack {
             val item = createItem(type, name, lore, model)
 
