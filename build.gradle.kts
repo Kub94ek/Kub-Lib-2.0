@@ -4,12 +4,12 @@ plugins {
     kotlin("jvm") version "2.1.10"
     id("org.jetbrains.dokka") version "2.0.0"
     kotlin("plugin.serialization") version "2.0.0"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "8.3.0"
     `maven-publish`
 }
 
 group = "me.kub94ek"
-version = "2.1"
+version = "2.2"
 
 repositories {
     mavenCentral()
@@ -23,11 +23,11 @@ repositories {
 
 dependencies {
     // Core dependencies
-    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.10")
 
     // NBT API
-    compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.3")
+    compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.7")
 }
 
 tasks.build {
