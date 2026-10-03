@@ -1,6 +1,7 @@
 package me.kub94ek.kubLib.items.custom
 
 import de.tr7zw.nbtapi.NBT
+import me.kub94ek.kubLib.items.Flags
 import me.kub94ek.kubLib.items.Item
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
@@ -12,8 +13,9 @@ abstract class CustomItem(
     type: Material,
     name: Component?,
     lore: List<Component>? = null,
-    model: String? = id
-): Item(id, ItemStack(type)) {
+    model: String? = id,
+    flags: Map<Flags, Any> = emptyMap()
+): Item(id, ItemStack(type), flags) {
     init {
         createCustomItem(id, type, name, lore, model)
     }

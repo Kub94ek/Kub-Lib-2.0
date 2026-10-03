@@ -1,7 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    kotlin("jvm") version "2.1.10"
+    kotlin("jvm") version "2.3.20"
     id("org.jetbrains.dokka") version "2.0.0"
     kotlin("plugin.serialization") version "2.0.0"
     id("com.gradleup.shadow") version "8.3.0"
@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "me.kub94ek"
-version = "2.2"
+version = "2.3"
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ repositories {
 dependencies {
     // Core dependencies
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.10")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.3.20")
 
     // NBT API
     compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.7")

@@ -15,7 +15,7 @@ public class KubLibLoader implements PluginLoader {
     public void classloader(@NotNull PluginClasspathBuilder classpathBuilder) {
         MavenLibraryResolver resolver = new MavenLibraryResolver();
         resolver.addDependency(new Dependency(
-                new DefaultArtifact("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.10"), null));
+                new DefaultArtifact("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.3.20"), null));
 //        resolver.addDependency(new Dependency(
 //                new DefaultArtifact("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0"), null));
         

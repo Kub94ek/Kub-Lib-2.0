@@ -72,8 +72,8 @@ class CraftingListener(kubLib: KubLib) : Listener {
         val result = event.result
 
         val inv = (event.block.state as? Crafter)?.inventory ?: return
-        println(result)
-        println(inv.contents)
+        /*println(result)
+        println(inv.contents)*/
 
         if (shouldCancelCraft(inv.contents, result)) {
             event.result = EMPTY
